@@ -1,1 +1,1 @@
-# grokking_algorithms_practice
+# Go Practice! 
