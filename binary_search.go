@@ -6,10 +6,10 @@ import (
 )
 
 func main() {
-	list := [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	item := 5
+	arr := [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	item := 4
 
-	index, err := binary_search(list[:], item)
+	index, err := binary_search(arr[:], item)
 
 	if err != nil {
 		fmt.Printf("Error: Item %d not found.\n", item)
@@ -28,7 +28,7 @@ func binary_search(list []int, item int) (int, error) {
 		mid := (low + high) / 2
 		guess := list[mid]
 
-		visualize(list[:], low, high, mid, count)
+		//visualize(list[:], low, high, mid, count)
 
 		if guess == item {
 			return mid, nil
