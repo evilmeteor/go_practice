@@ -9,7 +9,7 @@ func main() {
 	arr := [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	item := 3
 
-	index, err := binary_search(arr[:], item)
+	index, err := binary_search(arr[:], 0, len(arr)-1, item)
 
 	if err != nil {
 		fmt.Printf("Error: Item %d not found.\n", item)
@@ -18,28 +18,20 @@ func main() {
 	}
 }
 
-func binary_search(list []int, item int) (int, error) {
-	low := 0
-	high := len(list) - 1
-	count := 0
-
-	for low <= high {
-		count += 1
+func binary_search(list []int, low int, high int, item int) (int, error) {
+	if high >= low {
 		mid := (low + high) / 2
-		guess := list[mid]
-
-		if guess == item {
+		if list[mid] == item {
 			return mid, nil
 		}
 
-		if guess < item {
-			low = mid + 1
+		if list[mid] < item {
+			return binary_search(list, mid+1, high, item)
 		}
 
-		if guess > item {
-			high = mid - 1
+		if list[mid] > item {
+			return binary_search(list, low, mid-1, item)
 		}
-
 	}
 
 	return -1, errors.New("Not Found")
