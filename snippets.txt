@@ -1,0 +1,35 @@
+func visualize(list []int, low int, high int, mid int, count int) {
+	fmt.Printf("%d: ", count)
+
+	for i := 0; i < len(list); i++ {
+		switch {
+		case i < low:
+			fmt.Print("   ")
+
+		case i == low:
+			fmt.Print("{ ")
+			switch {
+			case low == high:
+				fmt.Printf("[%d] }", list[i])
+			case i == mid:
+				fmt.Printf("[%d]", list[i])
+			default:
+				fmt.Printf(" %d ", list[i])
+			}
+
+		case i == mid:
+			fmt.Printf("[%d]", list[i])
+
+		case i == high:
+			fmt.Printf(" %d  }", list[i])
+
+		case i > high:
+			fmt.Print("\n")
+			return
+
+		default:
+			fmt.Printf(" %d ", list[i])
+		}
+	}
+	fmt.Print("\n")
+}
